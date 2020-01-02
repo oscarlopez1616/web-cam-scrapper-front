@@ -32,7 +32,7 @@ const TemplateSelector = ({hostname}) => {
             require("../template/conejox.com/css/estilos.css");
             require("../template/conejox.com/css/reset.css");
             return (
-                <Template json={json} affiliateName="CumLouderAffiliate"/>
+                <Template affiliateName="CumLouderAffiliate"/>
                 );
     }
 }
