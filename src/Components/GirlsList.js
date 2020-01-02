@@ -10,8 +10,6 @@ return (
 
     <div className="listado-chicas">
 
-        {console.log(json[0])}
-
         {createSmallGirls(5,0,json,webCamsHost,thumbsCDN)}
 
         {createBigGirl(false,json[6],webCamsHost,thumbsCDN)}

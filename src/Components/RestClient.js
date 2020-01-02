@@ -1,21 +1,20 @@
 import axios from 'axios';
-import {LoginMapper} from 'web-cam-scrapper-front/src/LoginMapper';
+import {LoginMapper} from "./LoginMapper";
 
 const md5 = require('md5');
 
-var COOKIE_LOGIN_NAME = 'scrapper';
-
+const COOKIE_LOGIN_NAME = 'scrapper';
 const clientPublicAuthId = '2a9ac062-e94e-4e2d-a514-f2620f94009e';
-export const loginBorrowerUser = 'superadmin@auditor-framework.com';
-export const loginBorrowerPass = '123456';
+const loginBorrowerUser = 'superadmin@auditor-framework.com';
+const loginBorrowerPass = '123456';
 const md5BorrowerUser = md5(loginBorrowerUser);
-export const clientPublicAuth = btoa(`${clientPublicAuthId}:${md5BorrowerUser}`);
-const apiBase = '/api';
-const apiUrl = "http://localhost/api";
-const apiTokenUrl = apiUrl + '/token';
+const clientPublicAuth = btoa(`${clientPublicAuthId}:${md5BorrowerUser}`);
+const apiUrl = "http://localhost/";
+const apiBase = 'api';
+const apiTokenUrl = apiUrl + 'token';
 
 const getAuthorizationConfig = () => {
-    const apiToken = localStorage.getItem(window.RUNTIME_COOKIE_NAME || COOKIE_LOGIN_NAME);
+    const apiToken = localStorage.getItem(COOKIE_LOGIN_NAME);
     if (apiToken) {
         const token = JSON.parse(apiToken);
         return {
@@ -27,7 +26,7 @@ const getAuthorizationConfig = () => {
 };
 
 const requestRefreshAuthorization = (service, dispatch, action) => {
-    let apiToken = localStorage.getItem(window.RUNTIME_COOKIE_NAME);
+    let apiToken = localStorage.getItem(window.COOKIE_LOGIN_NAME);
     apiToken = JSON.parse(apiToken);
     let data = {
         refresh_token: apiToken.refresh_token,
@@ -51,15 +50,15 @@ const requestRefreshAuthorization = (service, dispatch, action) => {
     axios(configRequest.url, configRequest)
         .then((res) => {
             const token = LoginMapper.hydrate(res.data);
-            localStorage.removeItem(window.RUNTIME_COOKIE_NAME || COOKIE_LOGIN_NAME);
-            localStorage.setItem(window.RUNTIME_COOKIE_NAME || COOKIE_LOGIN_NAME, JSON.stringify(token));
+            localStorage.removeItem(COOKIE_LOGIN_NAME);
+            localStorage.setItem(COOKIE_LOGIN_NAME, JSON.stringify(token));
             const req = requestApi(service);
             dispatch(action(req));
         })
         .catch((error) => {
             if (error.response.status === 401) {
-                localStorage.removeItem(window.RUNTIME_COOKIE_NAME || COOKIE_LOGIN_NAME);
-                window.location = '/application/unauthorized';
+                localStorage.removeItem(COOKIE_LOGIN_NAME);
+                window.location = 'application/unauthorized';
             } else {
                 throw error;
             }
@@ -107,3 +106,31 @@ export const requestApi = (...requestProps) => request(
     true,
     ...requestProps
 );
+
+export const debugValues = {
+    XDEBUG: false,
+    XDEBUG_SESSION_START: 'XDEBUG_SESSION_START=phpstorm',
+};
+
+const deb = debugValues.XDEBUG ? debugValues.XDEBUG_SESSION_START : '';
+
+export const actions = {
+    GET_JOIN_PAGE: 'GET_JOIN_PAGE'
+};
+
+export const getJoinPage = data => ({
+    type: actions.GET_JOIN_PAGE,
+    payload: data
+});
+
+export const joinPageRequest = {
+    postCreateBorrower: 'loanApplication:postCreateBorrower'
+};
+
+export const services = {
+    getJoinPage: () => ({
+        name: joinPageRequest.getJoinPage,
+        route: `cam_landing_creator/join_page/${deb && ('?' + deb)}`,
+        method: 'get'
+    })
+};

@@ -1,13 +1,23 @@
 import React from "react";
 import GirlsList from "./GirlsList";
+import axios from 'axios';
 
-const Babosas = ({json}) => {
+const Template = ({json, affiliateName}) => {
+
+
+    let getJoinPage = async () => {
+        let res = await axios.get("http://localhost/api/cam_landing_creator/join_page/www.buscando-novia.com/");
+        return res.data;
+    };
+
     return (
 
         <div>
+            {console.log(getJoinPage)}
             <div className="box-header">
                 <div className="header">
-                    <h1 className="logo-sitio"><a href="#" title="Babosas.biz">Babosas.biz</a></h1>
+                    <h1 className="logo-sitio"><a href="#" title={affiliateName + ".biz"}>{affiliateName + ".biz"}</a>
+                    </h1>
                     <div className="tit-webcams">Webcams</div>
 
                     <div className="logo-cum"><a href="#" title="Cumlouder.com">Cumlouder.com</a></div>
@@ -23,7 +33,7 @@ const Babosas = ({json}) => {
                 </div>
             </div>
 
-            <GirlsList json ={json["cam_unit_content_with_affiliate_data_dto"]} />
+            <GirlsList json={json["cam_unit_content_with_affiliate_data_dto"]}/>
 
             <div className="box-footer">
                 <div className="menu">
@@ -61,4 +71,4 @@ const Babosas = ({json}) => {
 
 
 }
-export default Babosas
+export default Template;
