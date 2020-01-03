@@ -5,24 +5,34 @@ import axios from 'axios';
 const Template = ({affiliateName}) => {
 
     const host = 'http://localhost/';
-    const apiUrl= 'api/cam_landing_creator/';
+    const apiUrl = 'api/cam_landing_creator/';
     const apiMethodUrl = 'join_page/www.buscando-novia.com/';
 
-    const [json, setJson] = useState({});
-    const [loading, setLoading] = useState(true);
-    const [page, setPage] = useState(0);
+    const [loading, setLoading] = useState({loading: true, json: '', page: 0});
 
-    useEffect(async() => {
-            let res = await axios.get(host+apiUrl+apiMethodUrl+page+"/");
-            setJson(res.data['cam_unit_content_with_affiliate_data_dto']);
-            setLoading(false);
-        },
-        []
-    );
+    function loadGirls() {
+
+        axios.get(host + apiUrl + apiMethodUrl + loading.page + "/").then(
+            function (response) {
+                console.log(response.data['cam_unit_content_with_affiliate_data_dto']);
+                setLoading({
+                        loading: false,
+                        json: response.data['cam_unit_content_with_affiliate_data_dto'],
+                        page: loading.page + 1
+                    }
+                );
+            }
+        );
+
+    }
+
+    useEffect(() => {
+        loadGirls();
+    }, []);
 
 
     return (
-        loading ?
+        loading.loading ?
             (<h1>loading</h1>) :
 
             (
@@ -43,16 +53,17 @@ const Template = ({affiliateName}) => {
                                 <a href="#" title="Compra Créditos">Compra Créditos</a>
                             </div>
 
-                            <div className="clear" />
+                            <div className="clear"/>
                         </div>
                     </div>
                     <div className="listado-chicas">
 
-                         <GirlsList json={json}/>
+                        <GirlsList json={loading.json}/>
 
-                        <div className="clear" />
+                        <div className="clear"/>
 
-                        <a className="btn-mas-modelos" href="#" title="Mostrar más modelos" >
+                        <a className="btn-mas-modelos" href="#" title="Mostrar más modelos"
+                           onClick={() => loadGirls()}>
                             Siguiente Página
                         </a>
 
