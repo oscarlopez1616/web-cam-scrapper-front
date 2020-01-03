@@ -15,43 +15,40 @@ function createSmallGirls(girlsAmount,currentGirl,json,webCamsHost,thumbsCDN){
                     image={thumbsCDN+json[i+currentGirl]["cam_unit_thumb"][ (Math.floor(Math.random() * 3) + 1) ] }
                     isBigGirl={false}
                     isRightGirl={false}
+                    key={i+currentGirl}
                     />);
       }
 
       return girls;
 }
 
-function createBigGirl(isRightGirl,jsonItem,webCamsHost,thumbsCDN){
+function createBigGirl(isRightGirl,currentGirl,jsonItem,webCamsHost,thumbsCDN){
     return  <Girl
                 link={ webCamsHost+jsonItem["wbmer_permalink"]+"/?nats="+jsonItem["cum_louder_web_cams_tracking_code"]}
                 image={thumbsCDN+jsonItem["cam_unit_thumb_big"] }
                 isBigGirl={true}
                 isRightGirl={isRightGirl}
+                key={currentGirl+1}
             />
 }
 
 return (
 
-    <div className="listado-chicas">
-        {console.log(  json[0]) }
+    <div>
 
         {createSmallGirls(5,0,json,webCamsHost,thumbsCDN)}
 
-        {createBigGirl(false,json[6],webCamsHost,thumbsCDN)}
+        {createBigGirl(false,6,json[6],webCamsHost,thumbsCDN)}
 
         {createSmallGirls(11,7,json,webCamsHost,thumbsCDN)}
 
-        {createBigGirl(true,json[18],webCamsHost,thumbsCDN)}
+        {createBigGirl(true,18,json[18],webCamsHost,thumbsCDN)}
 
         {createSmallGirls(11,19,json,webCamsHost,thumbsCDN)}
 
-        {createBigGirl(false,json[20],webCamsHost,thumbsCDN)}
+        {createBigGirl(false,20,json[20],webCamsHost,thumbsCDN)}
 
         {createSmallGirls(6,21,json,webCamsHost,thumbsCDN)}
-
-        <div className="clear"></div>
-
-        <a className="btn-mas-modelos" href="#" title="Mostrar más modelos">Siguiente Página</a>
 
     </div>
 );

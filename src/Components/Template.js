@@ -4,12 +4,18 @@ import axios from 'axios';
 
 const Template = ({affiliateName}) => {
 
+    const host = 'http://localhost/';
+    const apiUrl= 'api/cam_landing_creator/';
+    const apiMethodUrl = 'join_page/www.buscando-novia.com/';
+
     const [json, setJson] = useState({});
     const [loading, setLoading] = useState(true);
+    const [page, setPage] = useState(0);
+
     useEffect(async() => {
-            let res = await axios.get("http://localhost/api/cam_landing_creator/join_page/www.buscando-novia.com/");
-            setLoading(false);
+            let res = await axios.get(host+apiUrl+apiMethodUrl+page+"/");
             setJson(res.data['cam_unit_content_with_affiliate_data_dto']);
+            setLoading(false);
         },
         []
     );
@@ -37,11 +43,20 @@ const Template = ({affiliateName}) => {
                                 <a href="#" title="Compra Créditos">Compra Créditos</a>
                             </div>
 
-                            <div className="clear"></div>
+                            <div className="clear" />
                         </div>
                     </div>
+                    <div className="listado-chicas">
 
-                    <GirlsList json={json}/>
+                         <GirlsList json={json}/>
+
+                        <div className="clear" />
+
+                        <a className="btn-mas-modelos" href="#" title="Mostrar más modelos" >
+                            Siguiente Página
+                        </a>
+
+                    </div>
 
                     <div className="box-footer">
                         <div className="menu">
