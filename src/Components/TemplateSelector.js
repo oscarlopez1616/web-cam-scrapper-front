@@ -1,16 +1,10 @@
 import React from "react";
 
 import Template from "./Template";
-import {getJoinPage, requestApi, services} from "./RestClient"
 
 const TemplateSelector = () => {
 
     const hostname= window.location.hostname;
-
-    const requestGetJoinPage = () => (dispatch) => {
-        const request = requestApi(services.getJoinPage());
-        dispatch(getJoinPage(request));
-    };
 
     switch (hostname) {
         case 'babosas':
