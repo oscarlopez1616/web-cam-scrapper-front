@@ -7,29 +7,36 @@ let webCamsHost = 'https://webcams.cumlouder.com/chica/';
 let thumbsCDN = 'https://w0.imgcm.com/modelos/';
 
 function createSmallGirls(girlsAmount,currentGirl,json,webCamsHost,thumbsCDN){
-    let girls = [];
 
-      for (let i = 0; i < girlsAmount; i++) {
+    let girls = [];
+    let jsonSliced = json.slice(currentGirl,currentGirl+girlsAmount);
+    let i = 0;
+
+    jsonSliced.map(function(girl) {
         girls.push(<Girl
-                    link={ webCamsHost+json[i+currentGirl]["wbmer_permalink"]+"/?nats="+json[i+currentGirl]["cum_louder_web_cams_tracking_code"]}
-                    image={thumbsCDN+json[i+currentGirl]["cam_unit_thumb"][ (Math.floor(Math.random() * 3) + 1) ] }
+                    link={ webCamsHost+girl["wbmer_permalink"]+"/?nats="+girl["cum_louder_web_cams_tracking_code"]}
+                    image={thumbsCDN+girl["cam_unit_thumb"][ (Math.floor(Math.random() * 3) + 1) ] }
                     isBigGirl={false}
                     isRightGirl={false}
                     key={i+currentGirl}
                     />);
-      }
+        i++;
+    });
 
-      return girls;
+    return girls;
 }
 
 function createBigGirl(isRightGirl,currentGirl,jsonItem,webCamsHost,thumbsCDN){
+   if(jsonItem !== undefined){
     return  <Girl
                 link={ webCamsHost+jsonItem["wbmer_permalink"]+"/?nats="+jsonItem["cum_louder_web_cams_tracking_code"]}
                 image={thumbsCDN+jsonItem["cam_unit_thumb_big"] }
                 isBigGirl={true}
                 isRightGirl={isRightGirl}
                 key={currentGirl+1}
-            />
+            />;
+   }
+
 }
 
 return (

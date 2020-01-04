@@ -14,7 +14,6 @@ const Template = ({affiliateName}) => {
 
         axios.get(host + apiUrl + apiMethodUrl + loading.page + "/").then(
             function (response) {
-                console.log(response.data['cam_unit_content_with_affiliate_data_dto']);
                 setLoading({
                         loading: false,
                         json: response.data['cam_unit_content_with_affiliate_data_dto'],
