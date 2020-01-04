@@ -11,17 +11,23 @@ const Template = ({affiliateName}) => {
     const [loading, setLoading] = useState({loading: true, json: '', page: 0});
 
     function loadGirls() {
+        let page = parseInt((window.location.pathname).split("/").join(""));
+        if (!Number.isInteger(page)) {
+            page = 0;
+        }
+        if ( (loading.page === 0) || (loading.page !== page)) {
+            axios.get(host + apiUrl + apiMethodUrl + page + "/").then(
+                function (response) {
+                    setLoading({
+                            loading: false,
+                            json: response.data['cam_unit_content_with_affiliate_data_dto'],
+                            page: page
+                        }
+                    );
 
-        axios.get(host + apiUrl + apiMethodUrl + loading.page + "/").then(
-            function (response) {
-                setLoading({
-                        loading: false,
-                        json: response.data['cam_unit_content_with_affiliate_data_dto'],
-                        page: loading.page + 1
-                    }
-                );
-            }
-        );
+                }
+            );
+        }
 
     }
 
