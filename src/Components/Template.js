@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import GirlsList from "./GirlsList";
+import PersonList from "./PersonList";
 import axios from 'axios';
 
 const Template = ({affiliateName}) => {
@@ -10,11 +10,12 @@ const Template = ({affiliateName}) => {
 
     const [loading, setLoading] = useState({loading: true, json: '', page: 0});
 
-    function loadGirls() {
+    function loadPeople() {
         let page = parseInt((window.location.pathname).split("/").join(""));
-        if (!Number.isInteger(page)) {
-            page = 0;
-        }
+            if (!Number.isInteger(page)) {
+                page = 0;
+            }
+
         if ( (loading.page === 0) || (loading.page !== page)) {
             axios.get(host + apiUrl + apiMethodUrl + page + "/").then(
                 function (response) {
@@ -32,7 +33,7 @@ const Template = ({affiliateName}) => {
     }
 
     useEffect(() => {
-        loadGirls();
+        loadPeople();
     }, []);
 
 
@@ -63,12 +64,12 @@ const Template = ({affiliateName}) => {
                     </div>
                     <div className="listado-chicas">
 
-                        <GirlsList json={loading.json}/>
+                        <PersonList json={loading.json}/>
 
                         <div className="clear"/>
 
                         <a className="btn-mas-modelos" href="#" title="Mostrar más modelos"
-                           onClick={() => loadGirls()}>
+                           onClick={() => window.location = loading.page+1}>
                             Siguiente Página
                         </a>
 

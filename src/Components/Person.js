@@ -1,6 +1,6 @@
 import React from "react";
 
-const Girl = ({link,image,isBigGirl,isRightGirl}) => {
+const Person = ({link,image,isBigGirl,isRightGirl}) => {
     return(
         <div className={"chica " + (isBigGirl ? 'chica-grande ' : '')+ (isRightGirl ? 'grande-derecha' : '')}>
             <a className="link" href={link} title="">
@@ -13,4 +13,4 @@ const Girl = ({link,image,isBigGirl,isRightGirl}) => {
 
 }
 
-export default Girl
+export default Person

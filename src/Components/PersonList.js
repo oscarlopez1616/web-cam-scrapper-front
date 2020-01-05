@@ -1,7 +1,7 @@
 import React from "react";
-import Girl from "./Girl";
+import Person from "./Person";
 
-const GirlsList = ({json}) => {
+const PersonList = ({json}) => {
 
 let webCamsHost = 'https://webcams.cumlouder.com/chica/';
 let thumbsCDN = 'https://w0.imgcm.com/modelos/';
@@ -13,7 +13,7 @@ function createSmallGirls(girlsAmount,currentGirl,json,webCamsHost,thumbsCDN){
     let i = 0;
 
     jsonSliced.map(function(girl) {
-        girls.push(<Girl
+        girls.push(<Person
                     link={ webCamsHost+girl["wbmer_permalink"]+"/?nats="+girl["cum_louder_web_cams_tracking_code"]}
                     image={thumbsCDN+girl["cam_unit_thumb"][ (Math.floor(Math.random() * 3) + 1) ] }
                     isBigGirl={false}
@@ -28,7 +28,7 @@ function createSmallGirls(girlsAmount,currentGirl,json,webCamsHost,thumbsCDN){
 
 function createBigGirl(isRightGirl,currentGirl,jsonItem,webCamsHost,thumbsCDN){
    if(jsonItem !== undefined){
-    return  <Girl
+    return  <Person
                 link={ webCamsHost+jsonItem["wbmer_permalink"]+"/?nats="+jsonItem["cum_louder_web_cams_tracking_code"]}
                 image={thumbsCDN+jsonItem["cam_unit_thumb_big"] }
                 isBigGirl={true}
@@ -62,4 +62,4 @@ return (
 );
 }
 
-export default GirlsList
+export default PersonList
