@@ -34,7 +34,7 @@ const Template = ({affiliateName}) => {
 
     useEffect(() => {
         loadPeople();
-    }, []);
+    });
 
 
     return (
