@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const Template = ({affiliateName}) => {
 
-    const host = 'http://localhost/';
+    const host = process.env.REACT_APP_CAM_UNIT_HOST_ENDPOINT;
     const apiUrl = 'api/cam_landing_creator/';
     const apiMethodUrl = 'join_page/www.buscando-novia.com/';
 
