@@ -20,11 +20,9 @@ const TemplateSelector = () => {
             require("../template/conejox.com/css/reset.css");
             return (<Template affiliateName="Conejox"/>);
         default:
-            require("../template/conejox.com/css/estilos.css");
-            require("../template/conejox.com/css/reset.css");
-            return (
-                <Template affiliateName="CumLouderAffiliate"/>
-                );
+            require("../template/babosas/css/estilos.css");
+            require("../template/babosas/css/reset.css");
+            return (<Template affiliateName="CumLouderAffiliate"/>);
     }
 }
 
