@@ -6,20 +6,20 @@ const PersonList = ({json}) => {
 let webCamsHost = 'https://webcams.cumlouder.com/chica/';
 let thumbsCDN = 'https://w0.imgcm.com/modelos/';
 
-function createSmallPeople(girlsAmount,currentGirl,json,webCamsHost,thumbsCDN){
+function createSmallPeople(peopleAmount,currentPerson,json,webCamsHost,thumbsCDN){
 
     let people = [];
-    let jsonSliced = json.slice(currentGirl,currentGirl+girlsAmount);
+    let jsonSliced = json.slice(currentPerson,currentPerson+peopleAmount);
     let i = 0;
 
-    jsonSliced.map(function(girl) {
+    jsonSliced.map(function(person) {
         people.push(<Person
-                    link={ webCamsHost+girl["wbmer_permalink"]+"/?nats="+girl["cum_louder_web_cams_tracking_code"]}
-                    image={thumbsCDN+girl["cam_unit_thumb"][1] }
-                    personName={girl["wbmer_nick"]}
-                    isBigGirl={false}
-                    isRightGirl={false}
-                    key={i+currentGirl}
+                    link={ webCamsHost+person["wbmer_permalink"]+"/?nats="+person["cum_louder_web_cams_tracking_code"]}
+                    image={thumbsCDN+person["cam_unit_thumb"][1] }
+                    personName={person["wbmer_nick"]}
+                    isBigPerson={false}
+                    isRightPerson={false}
+                    key={i+currentPerson}
                     />);
         i++;
     });
@@ -27,15 +27,15 @@ function createSmallPeople(girlsAmount,currentGirl,json,webCamsHost,thumbsCDN){
     return people;
 }
 
-function createBigPerson(isRightGirl,currentGirl,jsonItem,webCamsHost,thumbsCDN){
+function createBigPerson(isRightPerson,currentPerson,jsonItem,webCamsHost,thumbsCDN){
    if(jsonItem !== undefined){
     return  <Person
                 link={ webCamsHost+jsonItem["wbmer_permalink"]+"/?nats="+jsonItem["cum_louder_web_cams_tracking_code"]}
                 image={thumbsCDN+jsonItem["cam_unit_thumb_big"] }
                 personName={jsonItem["wbmer_nick"]}
-                isBigGirl={true}
-                isRightGirl={isRightGirl}
-                key={currentGirl+1}
+                isBigPerson={true}
+                isRightPerson={isRightPerson}
+                key={currentPerson+1}
             />;
    }
 
