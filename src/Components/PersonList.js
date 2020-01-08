@@ -62,6 +62,6 @@ return (
 
     </div>
 );
-}
+};
 
 export default PersonList

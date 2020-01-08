@@ -11,6 +11,6 @@ const Person = ({link,image,personName,isBigPerson,isRightPerson}) => {
         </div>
         )
 
-}
+};
 
 export default Person

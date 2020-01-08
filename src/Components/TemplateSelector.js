@@ -24,6 +24,6 @@ const TemplateSelector = () => {
             require("../template/babosas/css/reset.css");
             return (<Template affiliateName="CumLouderAffiliate"/>);
     }
-}
+};
 
 export default TemplateSelector;
