@@ -5,8 +5,8 @@ import axios from 'axios';
 const Template = ({affiliateName}) => {
 
     const host = process.env.REACT_APP_CAM_UNIT_HOST_ENDPOINT;
-    const apiUrl = 'api/cam_landing_creator/';
-    const apiMethodUrl = 'join_page/www.buscando-novia.com/';
+    const apiUrl = process.env.REACT_APP_CAM_UNIT_API_URL_ENDPOINT;
+    const apiMethodUrl = process.env.REACT_APP_CAM_UNIT_API_METHOD_URL_ENDPOINT;
 
     const [loading, setLoading] = useState({loading: true, json: '', page: 0});
 
@@ -34,7 +34,9 @@ const Template = ({affiliateName}) => {
 
     useEffect(() => {
         loadPeople();
-    });
+    },
+        []
+    );
 
 
     return (
