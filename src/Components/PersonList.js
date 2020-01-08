@@ -16,6 +16,7 @@ function createSmallPeople(girlsAmount,currentGirl,json,webCamsHost,thumbsCDN){
         people.push(<Person
                     link={ webCamsHost+girl["wbmer_permalink"]+"/?nats="+girl["cum_louder_web_cams_tracking_code"]}
                     image={thumbsCDN+girl["cam_unit_thumb"][1] }
+                    personName={girl["wbmer_nick"]}
                     isBigGirl={false}
                     isRightGirl={false}
                     key={i+currentGirl}
@@ -31,6 +32,7 @@ function createBigPerson(isRightGirl,currentGirl,jsonItem,webCamsHost,thumbsCDN)
     return  <Person
                 link={ webCamsHost+jsonItem["wbmer_permalink"]+"/?nats="+jsonItem["cum_louder_web_cams_tracking_code"]}
                 image={thumbsCDN+jsonItem["cam_unit_thumb_big"] }
+                personName={jsonItem["wbmer_nick"]}
                 isBigGirl={true}
                 isRightGirl={isRightGirl}
                 key={currentGirl+1}
