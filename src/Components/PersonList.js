@@ -15,7 +15,7 @@ function createSmallGirls(girlsAmount,currentGirl,json,webCamsHost,thumbsCDN){
     jsonSliced.map(function(girl) {
         girls.push(<Person
                     link={ webCamsHost+girl["wbmer_permalink"]+"/?nats="+girl["cum_louder_web_cams_tracking_code"]}
-                    image={thumbsCDN+girl["cam_unit_thumb"][ (Math.floor(Math.random() * 3) + 1) ] }
+                    image={thumbsCDN+girl["cam_unit_thumb"][1] }
                     isBigGirl={false}
                     isRightGirl={false}
                     key={i+currentGirl}
