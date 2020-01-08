@@ -3,8 +3,8 @@ import Person from "./Person";
 
 const PersonList = ({json}) => {
 
-let webCamsHost = 'https://webcams.cumlouder.com/chica/';
-let thumbsCDN = 'https://w0.imgcm.com/modelos/';
+let webCamsHost = process.env.REACT_APP_WEB_CAM_URL;
+let thumbsCDN = process.env.REACT_APP_THUMB_CDN;
 
 function createSmallPeople(peopleAmount,currentPerson,json,webCamsHost,thumbsCDN){
 
