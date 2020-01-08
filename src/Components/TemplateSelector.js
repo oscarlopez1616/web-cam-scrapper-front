@@ -7,15 +7,15 @@ const TemplateSelector = () => {
     const hostname= window.location.hostname;
 
     switch (hostname) {
-        case 'babosas':
+        case 'www.babosas.com':
             require("../template/babosas/css/estilos.css");
             require("../template/babosas/css/reset.css");
             return (<Template affiliateName="Babosas"/>);
-        case 'cerdas':
+        case 'www.cerdas.com':
             require("../template/cerdas.com/css/estilos.css");
             require("../template/cerdas.com/css/reset.css");
             return (<Template affiliateName="Cerdas"/>);
-        case 'conejox':
+        case 'conejox.com':
             require("../template/conejox.com/css/estilos.css");
             require("../template/conejox.com/css/reset.css");
             return (<Template affiliateName="Conejox"/>);
