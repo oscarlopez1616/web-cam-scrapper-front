@@ -6,14 +6,14 @@ const PersonList = ({json}) => {
 let webCamsHost = 'https://webcams.cumlouder.com/chica/';
 let thumbsCDN = 'https://w0.imgcm.com/modelos/';
 
-function createSmallGirls(girlsAmount,currentGirl,json,webCamsHost,thumbsCDN){
+function createSmallPeople(girlsAmount,currentGirl,json,webCamsHost,thumbsCDN){
 
-    let girls = [];
+    let people = [];
     let jsonSliced = json.slice(currentGirl,currentGirl+girlsAmount);
     let i = 0;
 
     jsonSliced.map(function(girl) {
-        girls.push(<Person
+        people.push(<Person
                     link={ webCamsHost+girl["wbmer_permalink"]+"/?nats="+girl["cum_louder_web_cams_tracking_code"]}
                     image={thumbsCDN+girl["cam_unit_thumb"][1] }
                     isBigGirl={false}
@@ -23,10 +23,10 @@ function createSmallGirls(girlsAmount,currentGirl,json,webCamsHost,thumbsCDN){
         i++;
     });
 
-    return girls;
+    return people;
 }
 
-function createBigGirl(isRightGirl,currentGirl,jsonItem,webCamsHost,thumbsCDN){
+function createBigPerson(isRightGirl,currentGirl,jsonItem,webCamsHost,thumbsCDN){
    if(jsonItem !== undefined){
     return  <Person
                 link={ webCamsHost+jsonItem["wbmer_permalink"]+"/?nats="+jsonItem["cum_louder_web_cams_tracking_code"]}
@@ -44,19 +44,19 @@ return (
 
     <div>
 
-        {createSmallGirls(5,0,json,webCamsHost,thumbsCDN)}
+        {createSmallPeople(5,0,json,webCamsHost,thumbsCDN)}
 
-        {createBigGirl(false,6,json[6],webCamsHost,thumbsCDN)}
+        {createBigPerson(false,6,json[6],webCamsHost,thumbsCDN)}
 
-        {createSmallGirls(11,7,json,webCamsHost,thumbsCDN)}
+        {createSmallPeople(11,7,json,webCamsHost,thumbsCDN)}
 
-        {createBigGirl(true,18,json[18],webCamsHost,thumbsCDN)}
+        {createBigPerson(true,18,json[18],webCamsHost,thumbsCDN)}
 
-        {createSmallGirls(11,19,json,webCamsHost,thumbsCDN)}
+        {createSmallPeople(11,19,json,webCamsHost,thumbsCDN)}
 
-        {createBigGirl(false,20,json[20],webCamsHost,thumbsCDN)}
+        {createBigPerson(false,20,json[20],webCamsHost,thumbsCDN)}
 
-        {createSmallGirls(6,21,json,webCamsHost,thumbsCDN)}
+        {createSmallPeople(6,21,json,webCamsHost,thumbsCDN)}
 
     </div>
 );
